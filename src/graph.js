@@ -26,11 +26,13 @@ const bfs = function(pairs, source, target) {
       return true;
     }
     visited.push(current_element);
-    graph[current_element] && graph[current_element].forEach(value => {
-      if(!visited.includes(value) && !queue.includes(value)) {
-        queue.push(value);
-      }
-    });
+    if(graph[current_element]) {
+      graph[current_element].forEach(value => {
+        if(!visited.includes(value) && !queue.includes(value)) {
+          queue.push(value);
+        }
+      });
+    }
   }
   return false;
 }
