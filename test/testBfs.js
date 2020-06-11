@@ -26,6 +26,10 @@ describe('Breadth First Search', () => {
     const pairs = [['a','b'], ['b','c'], ['c','d']];
     assert.equal(bfs(pairs, 'a', 'a'), false);
   });
+  it('should not find path if source is not in graph', () => {
+    const pairs = [['a','b'], ['b','c'], ['c','d']];
+    assert.equal(bfs(pairs, 'd', 'a'), false); 
+  });
   it('should give path for densely connected nodes if connected', () => {
     const pairs = [
       ['a','b'],['a','c'],['a','d'],['a','e'],['a','f'],

@@ -18,7 +18,7 @@ const create_graph = function(pairs) {
 const bfs = function(pairs, source, target) {
   const graph = create_graph(pairs);
   const visited = [];
-  const queue = graph[source];
+  const queue = graph[source] && graph[source].slice();
   let current_element;
   while(queue && queue.length) {
     current_element = queue.shift();
