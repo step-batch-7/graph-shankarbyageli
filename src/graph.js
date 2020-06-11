@@ -20,7 +20,7 @@ const bfs = function(pairs, source, target) {
   const visited = [];
   const queue = graph[source];
   let current_element;
-  while(queue.length) {
+  while(queue && queue.length) {
     current_element = queue.shift();
     if(current_element == target) {
       return true;
