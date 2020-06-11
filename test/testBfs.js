@@ -22,6 +22,10 @@ describe('Breadth First Search', () => {
     const pairs = [['a','b'], ['b','c'], ['c','a']];
     assert.equal(bfs(pairs, 'a', 'a'), true);
   });
+  it('should not find path if there is no cycle to the same node', () => {
+    const pairs = [['a','b'], ['b','c'], ['c','d']];
+    assert.equal(bfs(pairs, 'a', 'a'), false);
+  });
   it('should give path for densely connected nodes if connected', () => {
     const pairs = [
       ['a','b'],['a','c'],['a','d'],['a','e'],['a','f'],
