@@ -19,17 +19,18 @@ const bfs = function(pairs, source, target) {
   const graph = create_graph(pairs);
   const visited = [];
   const queue = graph[source];
+  let current_element;
   while(queue.length) {
     current_element = queue.shift();
     if(current_element == target) {
       return true;
     }
+    visited.push(current_element);
     graph[current_element] && graph[current_element].forEach(value => {
       if(!visited.includes(value) && !queue.includes(value)) {
         queue.push(value);
       }
     });
-    visited.push(current_element);
   }
   return false;
 }
