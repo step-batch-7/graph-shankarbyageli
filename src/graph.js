@@ -4,10 +4,10 @@
 // To => to 
 // Should return true.
 
-const create_graph = function(pairs) {
+const create_graph = function (pairs) {
   return pairs.reduce((graph, path) => {
     const [from, to] = path;
-    if(!graph[from]) {
+    if (!graph[from]) {
       graph[from] = [];
     }
     graph[from].push(to);
@@ -15,20 +15,20 @@ const create_graph = function(pairs) {
   }, {});
 }
 
-const bfs = function(pairs, source, target) {
+const bfs = function (pairs, source, target) {
   const graph = create_graph(pairs);
   const visited = [];
-  const queue = graph[source] && graph[source].slice();
+  const queue = graph[source] ? graph[source].slice() : [];
   let current_element;
-  while(queue && queue.length) {
+  while (queue.length) {
     current_element = queue.shift();
-    if(current_element == target) {
+    if (current_element == target) {
       return true;
     }
     visited.push(current_element);
-    if(graph[current_element]) {
+    if (graph[current_element]) {
       graph[current_element].forEach(value => {
-        if(!visited.includes(value) && !queue.includes(value)) {
+        if (!visited.includes(value) && !queue.includes(value)) {
           queue.push(value);
         }
       });
@@ -37,5 +37,4 @@ const bfs = function(pairs, source, target) {
   return false;
 }
 
-module.exports = {bfs};
-
+module.exports = { bfs };
