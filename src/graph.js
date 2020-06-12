@@ -18,22 +18,23 @@ const create_graph = function (pairs) {
 const bfs = function (pairs, source, target) {
   const graph = create_graph(pairs);
   const visited = [];
-  const search = function (from, to) {
-    const children = graph[from] ? graph[from].slice() : [];
-    for (each of children) {
-      if (each == to) {
-        return true;
-      }
-      if (!visited.includes(each)) {
-        visited.push(each);
-        if (search(each, to)) {
-          return true;
-        }
-      }
+  const queue = graph[source] ? graph[source].slice() : [];
+  let current_element;
+  while (queue.length) {
+    current_element = queue.shift();
+    if (current_element == target) {
+      return true;
     }
-    return false;
-  };
-  return search(source, target);
+    visited.push(current_element);
+    if (graph[current_element]) {
+      graph[current_element].forEach(value => {
+        if (!visited.includes(value) && !queue.includes(value)) {
+          queue.push(value);
+        }
+      });
+    }
+  }
+  return false;
 }
 
 module.exports = { bfs };
